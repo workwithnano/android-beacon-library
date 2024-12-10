@@ -370,6 +370,8 @@ class ScanHelper {
                     RangeState rangeState = mRangedRegionState.get(region);
                     if (rangeState != null) {
                         rangeState.addBeacon(beacon);
+                        LogManager.d(TAG, "[CP] Calling ranging callback");
+                        rangeState.getCallback().call(mContext, "rangingData", new RangingData(rangeState.finalizeBeacons(), region).toBundle());
                     }
                 }
             }
